@@ -16,4 +16,12 @@ def home():
 def predict_api():
     data=request.json['data']
     print(data)
-    
+    raw_data=np.array(list(data.values())).reshape(1,-1)
+    print(raw_data)
+    scaled_data=scalar.transform(raw_data)
+    output=model.predict(scaled_data)
+    print(output)
+    return jsonify(output[0])
+
+if __name__=="__main__":
+    app.run(debug=True)
