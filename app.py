@@ -10,3 +10,10 @@ model=pickle.load(open('LRmodel.pkl','rb'))
 @app.route('/')
 def home():
     return render_template('home.html')
+
+@app.route('/predict_API',methods=['POST'])
+
+def predict_api():
+    data=request.json['data']
+    print(data)
+    
